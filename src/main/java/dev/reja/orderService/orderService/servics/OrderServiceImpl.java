@@ -49,7 +49,7 @@ public class OrderServiceImpl implements OrderService {
         createPaymentDto.setOrderId(String.valueOf(order.getId()));
         createPaymentDto.setAmount(order.getTotalAmt());
         createPaymentDto.setDescription("order id : "+order.getId());
-
+        createPaymentDto.setUserId(userId);
         createPaymentDto.setCustomerName(userResponseDto.getName());
         createPaymentDto.setCustomerPhone(userResponseDto.getContactNo());
         createPaymentDto.setCustomerEmail(userResponseDto.getEmail());
