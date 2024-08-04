@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/order")
-public class orderController {
+public class OrderController {
     @Autowired
     private OrderService orderService;
     @PostMapping("/createOrder")// used to hit by product Service
