@@ -9,7 +9,7 @@ import lombok.Setter;
 import java.math.BigDecimal;
 import java.util.UUID;
 
-@Entity
+@Entity(name = "ecom_order")
 @Getter
 @Setter
 public class Order extends BaseModel {

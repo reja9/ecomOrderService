@@ -4,6 +4,7 @@ import dev.reja.orderService.orderService.Clent.UserClent;
 import dev.reja.orderService.orderService.dtos.CreateOrderDto;
 import dev.reja.orderService.orderService.dtos.CreatePaymentDto;
 import dev.reja.orderService.orderService.dtos.UserResponseDto;
+import dev.reja.orderService.orderService.exceptions.OrderNotFoundException;
 import dev.reja.orderService.orderService.exceptions.RandomException;
 import dev.reja.orderService.orderService.models.Order;
 import dev.reja.orderService.orderService.models.OrderStatus;
@@ -58,6 +59,16 @@ public class OrderServiceImpl implements OrderService {
         if(response.getStatusCode()!= HttpStatusCode.valueOf(200)){
             throw new RandomException("response inValid");
         }
+        return order;
+    }
+
+    @Override
+    public Order updateOrderByOrderId(UUID orderId) {
+        Order order=orderRepository.findById(orderId).orElseThrow(
+                ()->new OrderNotFoundException("orde for this id "+orderId+"not found")
+        );
+        order.setOrderStatus(OrderStatus.SUCCESS);
+        orderRepository.save(order);
         return order;
     }
 }
